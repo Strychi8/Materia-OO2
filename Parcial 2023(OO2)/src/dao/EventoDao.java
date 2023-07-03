@@ -3,7 +3,6 @@ package dao;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -57,10 +56,8 @@ public class EventoDao {
      	  List<Evento> lista = null;
      	  try {
      		  iniciaOperacion();
-     		  lista = session.createQuery("from Evento").list();
-     		  for(Evento e: lista) {
-     			  Hibernate.initialize(e.getDispositivo());
-     		  }
+     		  lista = session.createQuery("from Evento e inner join fetch e.dispositivo d").list();
+     
      	  }finally {
      		  session.close();
      	  }
@@ -72,11 +69,9 @@ public class EventoDao {
     	 List<Evento> lista = null;
     	 try {
     		 iniciaOperacion();
-    		 String hql = "from Evento e where e.fechaHora>='" + fechaHoraDesde + "'" + " and e.fechaHora<='" + fechaHoraHasta + "'";
+    		 String hql = "from Evento e inner join fetch e.dispositivo d where e.fechaHora>='" + fechaHoraDesde + "'" + " and e.fechaHora<='" + fechaHoraHasta + "'";
     		 lista = session.createQuery(hql).list();
-    		 for (Evento e : lista) {
- 				Hibernate.initialize(e.getDispositivo());
- 			}
+    		 
     	 }finally {
     		 session.close();
     	 }
@@ -91,9 +86,7 @@ public class EventoDao {
      		 String hql = "from Evento e inner join fetch e.dispositivo d where d.idDispositivo=" + dispositivo.getIdDispositivo() 
      		 + " and e.fechaHora>='" + fechaHoraDesde + "'" + " and e.fechaHora<='" + fechaHoraHasta + "'";
      		 lista = session.createQuery(hql).list();
-     		for (Evento e : lista) {
-				Hibernate.initialize(e.getDispositivo());
-			}
+     		
      	 }finally {
      		 session.close();
      	 }
