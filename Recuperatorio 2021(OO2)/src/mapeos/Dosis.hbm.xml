@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="datos.Dosis" table="Dosis">
+    <id column="idDosis" name="idDosis">
+      <generator class="identity"/>
+    </id>
+     <property column="vacunatorio" name="vacunatorio" type="string"/>
+    <property column="fecha" name="fecha" type="LocalDate"/>
+    <property column="hora" name="hora" type="LocalTime"/>
+    <one-to-one name="vacuna" class="datos.Vacuna"></one-to-one>
+    <one-to-one name="persona" class="datos.Persona"></one-to-one>
+</class>    
+</hibernate-mapping>

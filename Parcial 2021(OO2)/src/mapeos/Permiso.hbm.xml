@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="datos.Permiso" table="Permiso">
+    <id column="idPermiso" name="idPermiso">
+      <generator class="identity"/>
+    </id>
+     <property column="fecha" name="fecha" type="LocalDate"/>
+    <property column="dias" name="cantDias" type="int"/>
+    
+    <many-to-one name="persona" class="datos.Persona" column="idPersona" not-null="true"></many-to-one>
+    <many-to-one name="rodado" class="datos.Rodado" column="idRodado" not-null="true"></many-to-one>
+    
+    <set name="desdeHasta" table="permisoxlugar" outer-join="true">
+      <key column="idPermiso"></key>
+       <many-to-many column="idLugar" class="datos.Lugar"></many-to-many>
+    </set>
+    
+</class>    
+</hibernate-mapping>
