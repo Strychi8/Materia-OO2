@@ -1,2 +1,7 @@
 1) Hibernate-Uno-a-Muchos (amortizacion)
 2) Recuperatorio 2021
+3) Final Diciembre 2020 (hacer bien la fecha en calcularDescuento)
+4) Final Julio 2021 (metodos 3 (cantProductosExistentes()) y 5 (calcularCantidadAPedir(Producto producto)))
+5) Final Mayo 2021 (metodos 2,3,4 y 5)(CU 2 y 3)
+6) Final Febrero 2022(metodos 6 y 7)(CU 5)
+7) Final Diciembre 2023(metodos 7 y 8)(CU 6 y 7)

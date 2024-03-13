@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="datos.Carga" table="Carga">
+	<id column="idCarga" name="idCarga">
+		<generator class="identity"/>
+	</id>
+	
+	<property column="aeropuertoOrigen" name="aeropuertoOrigen" type="string"/>
+	<property column="aeropuertoDestino" name="aeropuertoDestino" type="string"/>
+	<property column="peso" name="peso" type="int"/>
+	
+	<many-to-one name="cliente" class="datos.Cliente" column="idCliente" not-null="true" fetch="select" />
+	<many-to-one name="vuelo" class="datos.Vuelo" column="idVuelo" not-null="true" fetch="select" />
+	
+	<joined-subclass name="datos.Equipaje" table="Equipaje">  
+		<key column="idCarga"/>
+    	<property column="excedePeso" name="excedePeso" type="boolean"/>
+	</joined-subclass>
+   
+	<joined-subclass name="datos.Envio" table="Envio"> 
+		<key column="idCarga"/>
+		<property column="domicilioEntrega" name="domicilioEntrega" type="string"/>
+	</joined-subclass>
+		
+</class>
+</hibernate-mapping>

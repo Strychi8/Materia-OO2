@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="datos.Vuelo" table="Vuelo">
+	<id column="idVuelo" name="idVuelo">
+		<generator class="identity"/>
+	</id>
+	
+	<property column="vuelo" name="vuelo" type="string"/>
+	<property column="fechaHoraArribo" name="fechaHoraArribo" type="LocalDateTime"/>
+	<property column="fechaHoraPartida" name="fechaHoraPartida" type="LocalDateTime"/>
+	<property name="pesoMaximoEquipaje" column="pesoMaximoEquipaje" type="int"></property>
+	
+	<set name="cargas" table="Carga" order-by="idCarga asc" inverse="true" lazy="true" fetch="select">
+	   <key column="idVuelo" not-null="true"></key>
+	   <one-to-many class="datos.Carga"/>
+	</set>
+		
+</class>
+</hibernate-mapping>
